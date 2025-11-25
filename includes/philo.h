@@ -23,18 +23,24 @@
 
 typedef struct s_philo
 {
-	
+	int	id;
+	size_t	times_died;
+	size_t	times_eaten;
+	size_t	times_slept;
+	size_t	last_meal;
+	size_t	born_time;
 }	t_philo;
 
 typedef struct s_program
 {
-	int	number_of_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	number_of_times_each_philosopher_must_eat;
-	t_philo	*philos;
-}		t_program;
+	int		number_of_philosophers;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		number_of_times_each_philosopher_must_eat;
+	pthread_mutex_t	*forks;
+	t_philo		*philos;
+}			t_program;
 
 /* parse_args.c */
 int	parse_args(int argc, char **argv, t_program *program);

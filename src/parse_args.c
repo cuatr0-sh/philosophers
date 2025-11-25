@@ -31,7 +31,7 @@ static void	write_args(char **argv, t_program *program)
 	program->number_of_philosophers = ft_atoi(argv[1]);
 	program->time_to_die = ft_atoi(argv[2]);
 	program->time_to_eat = ft_atoi(argv[3]);
-	program->time_to_sleep = ft_atoi(argv[4]);
+	programe>time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		program->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 }
@@ -49,8 +49,8 @@ int	parse_args(int argc, char **argv, t_program *program)
 		return (write(2, "Wrong time_to_eat\n", 19));
 	else if (ft_atoi(argv[4]) <= 0 || check_args(argv[4]) == 1 )
 		return (write(2, "Wrong time_to_sleep\n", 21));
-	else if (ft_atoi(argv[5]) > MAX_PHILO || ft_atoi(argv[3]) <= 0 ||
-	check_args(argv[5]) == 1 )
+	else if (argc == 6 && (ft_atoi(argv[5]) > MAX_PHILO || ft_atoi(argv[3]) <= 0 ||
+	check_args(argv[5]) == 1))
 		return (write(2, "Wrong number_of_times_each_philosopher_must_eat\n", 30));
 	else
 		write_args(argv, program);

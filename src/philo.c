@@ -19,6 +19,6 @@ int	main(int argc, char **argv)
 	program = malloc(sizeof(t_program));
 	if (parse_args(argc, argv, program) != 0)
 		return (1);
-
+	init_philos()
 	return (0);
 }
