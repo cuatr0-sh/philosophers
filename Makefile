@@ -6,16 +6,18 @@
 #    By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 17:12:22 by asoria            #+#    #+#              #
-#    Updated: 2025/11/24 19:42:18 by asoria           ###   ########.fr        #
+#    Updated: 2025/11/26 22:51:46 by asoria           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= philo
 CC		:= cc
-CFLAGS		:= -Wall -Wextra -Werror -pthread -Iincludes -O2 -march=native
+CFLAGS		:= -Wall -Wextra -Werror -g -pthread -Iincludes -O2 -march=native
 
 SRC_DIR		:= src
-SRC_FILES	:= philo.c \
+SRC_FILES	:= debug.c \
+		   init.c \
+		   philo.c \
 		   parse_args.c \
 		   utils.c
 

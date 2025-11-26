@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:38:27 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/25 02:05:06 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/26 11:19:35 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	write_args(char **argv, t_program *program)
 	program->number_of_philosophers = ft_atoi(argv[1]);
 	program->time_to_die = ft_atoi(argv[2]);
 	program->time_to_eat = ft_atoi(argv[3]);
-	programe>time_to_sleep = ft_atoi(argv[4]);
+	program->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		program->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 }
