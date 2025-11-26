@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 17:09:11 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/26 02:05:31 by asoria           ###   ########.fr       */
+/*   Created: 2025/11/26 02:05:45 by asoria            #+#    #+#             */
+/*   Updated: 2025/11/26 02:13:16 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-
-int	main(int argc, char **argv)
+void	init_philos(t_program *program)
 {
-	t_program *program;
+	int	i;
 
-	program = malloc(sizeof(t_program));
-	if (parse_args(argc, argv, program) != 0)
-		return (1);
-	init_philos(program->philos);
-	return (0);
+	i = 1;
+	while(i <= program->number_of_philosophers)
+	{
+		program->philos->id[i];
+	}
 }
