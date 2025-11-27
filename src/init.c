@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 02:05:45 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/26 23:11:27 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/27 04:46:17 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	init_philo_subvars(t_philo philo, int i)
 	philo.times_died = 0;
 	philo.times_eaten = 0;
 	philo.times_slept = 0;
+	pthread_mutex_init(&philo.fork[i], NULL);
 	// gettimeofday(program->philos[i].born_time, 0);
 	// gettimeofday(program->philos[i].last_meal, 0);
 }
