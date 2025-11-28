@@ -6,46 +6,56 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 02:05:45 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/27 04:46:17 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/28 07:41:03 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	init_philo_subvars(t_philo philo, int i)
-{
-	(void)philo;
-	philo.id = i + 1;
-	philo.times_died = 0;
-	philo.times_eaten = 0;
-	philo.times_slept = 0;
-	pthread_mutex_init(&philo.fork[i], NULL);
-	// gettimeofday(program->philos[i].born_time, 0);
-	// gettimeofday(program->philos[i].last_meal, 0);
-}
-
-void	init_philos(t_program *program)
+static void	init_forks(t_program *program)
 {
 	int	i;
-	ssize_t	r;
 
 	i = 0;
-	while(i <= program->number_of_philosophers)
-	{
-		program->philos = malloc(sizeof(t_philo) * program->number_of_philosophers);
-		if (!program->philos)
-		{
-			r = write(2, "Error: malloc", 14);
-			(void)r;
-			return ;
-		}
+	while (i < program->number_of_philosophers)
+	{		
+		pthread_mutex_init(&program->philos[i].fork, NULL);
+			program->philos[i].r_fork = &program->philos[(i + 1) % program->number_of_philosophers].fork;
 		i++;
 	}
+}
+
+static void	init_philos(t_program *program)
+{
+	int	i;
+
+	program->philos = malloc(sizeof(t_philo) * program->number_of_philosophers);
+	if (!program->philos)
+		return ;
 	i = 0;
 	while(i < program->number_of_philosophers)
 	{
-		init_philo_subvars(program->philos[i], i);
+		program->philos[i].id = i + 1;
+		program->philos[i].times_died = 0;
+		program->philos[i].times_eaten = 0;
+		program->philos[i].times_slept = 0;
 		i++;
 	}
-	debug_print(program);
+}
+
+static void	init_program(char **argv, t_program *program)
+{
+	program->number_of_philosophers = ft_atoi(argv[1]);
+	program->time_to_die = ft_atoi(argv[2]);
+	program->time_to_eat = ft_atoi(argv[3]);
+	program->time_to_sleep = ft_atoi(argv[4]);
+	if (argv[5])
+		program->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+}
+
+void	init(char **argv, t_program *program)
+{
+	init_program(argv, program);
+	init_philos(program);
+	init_forks(program);
 }

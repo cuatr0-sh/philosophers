@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:38:27 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/26 11:19:35 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/28 07:48:15 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,7 @@ static int	check_args(char *str)
 	return (0);
 }
 
-static void	write_args(char **argv, t_program *program)
-{
-	program->number_of_philosophers = ft_atoi(argv[1]);
-	program->time_to_die = ft_atoi(argv[2]);
-	program->time_to_eat = ft_atoi(argv[3]);
-	program->time_to_sleep = ft_atoi(argv[4]);
-	if (argv[5])
-		program->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
-}
-
-int	parse_args(int argc, char **argv, t_program *program)
+int	parse_args(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 		return (write(2, "Wrong number of arguments\n", 27));
@@ -52,7 +42,5 @@ int	parse_args(int argc, char **argv, t_program *program)
 	else if (argc == 6 && (ft_atoi(argv[5]) > MAX_PHILO || ft_atoi(argv[3]) <= 0 ||
 	check_args(argv[5]) == 1))
 		return (write(2, "Wrong number_of_times_each_philosopher_must_eat\n", 30));
-	else
-		write_args(argv, program);
 	return (0);
 }

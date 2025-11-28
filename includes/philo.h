@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:10:08 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/27 04:48:25 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/28 07:48:03 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philo
 	size_t	times_slept;
 	size_t	last_meal;
 	size_t	born_time;
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	fork;
 	pthread_mutex_t *r_fork;
 }	t_philo;
 
@@ -45,18 +45,18 @@ typedef struct s_program
 }			t_program;
 
 /* parse_args.c */
-int	parse_args(int argc, char **argv, t_program *program);
+int	parse_args(int argc, char **argv);
 
 /* init.c */
-void	init_philos(t_program *program);
+void	init(char **argv, t_program *program);
 
 /* utils.c */
 int	ft_atoi(const char *str);
 
 /* routine.c */
-void	think(t_philo *philo);
-void	eat(t_philo *philo);
-void	sleep(t_philo *philo);
+void	philo_think(t_philo *philo);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
 
 
 /* debug.c */
