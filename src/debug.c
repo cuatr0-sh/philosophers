@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 22:46:11 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/28 07:49:19 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/30 08:39:56 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	debug_print(t_program *program)
 	printf("time_to_sleep: %d\n", program->time_to_sleep);
 	printf("number_of_times_each_philosopher_must_eat: %d\n", program->number_of_times_each_philosopher_must_eat);
 	printf("\n");
+
 	while (i < program->number_of_philosophers)
 	{
 		printf("Philo[%d]:\n", i + 1);

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 17:09:11 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/30 09:06:26 by asoria           ###   ########.fr       */
+/*   Created: 2025/11/30 08:55:50 by asoria            #+#    #+#             */
+/*   Updated: 2025/11/30 09:42:41 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+t_time	ft_get_time(void)
 {
-	int	i;
-	t_program *program;
+	struct timeval	tp;
+	t_time		time;
 
-	program = malloc(sizeof(t_program));
-	if (parse_args(argc, argv) != 0)
-		return (1);
-	init(argv, program);
-	i = 0;
-	while (i < program->number_of_philosophers)
-	{
-		pthread_create(&program->philos[i].thread, NULL, philo_routine, &program->philos[i]);
-	}
-	debug_print(program);
-	return (0);
+	gettimeofday(&tp, NULL);
+	time = (tp.tv_sec * 1000 + tp.tv_usec / 1000);
+	return (time);
+}
+
+t_time	time_since_ps(t_program *program)
+{
+	t_time	time_diff;
+
+	time_diff = program->program_start - ft_get_time();
+	return (time_diff);
 }

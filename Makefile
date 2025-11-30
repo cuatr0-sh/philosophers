@@ -6,7 +6,7 @@
 #    By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 17:12:22 by asoria            #+#    #+#              #
-#    Updated: 2025/11/26 22:51:46 by asoria           ###   ########.fr        #
+#    Updated: 2025/11/30 09:01:42 by asoria           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRC_FILES	:= debug.c \
 		   init.c \
 		   philo.c \
 		   parse_args.c \
+		   routine.c \
+		   time.c \
 		   utils.c
 
 OBJ_DIR		:= obj

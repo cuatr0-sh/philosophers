@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 02:05:45 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/28 07:51:49 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/30 09:49:12 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	init_philos(t_program *program)
 	while(i < program->number_of_philosophers)
 	{
 		program->philos[i].id = i + 1;
+		program->philos[i].dead = 0;
 		program->philos[i].times_died = 0;
 		program->philos[i].times_eaten = 0;
 		program->philos[i].times_slept = 0;
@@ -45,6 +46,7 @@ static void	init_philos(t_program *program)
 
 static void	init_program(char **argv, t_program *program)
 {
+	program->program_start = ft_get_time();
 	program->number_of_philosophers = ft_atoi(argv[1]);
 	program->time_to_die = ft_atoi(argv[2]);
 	program->time_to_eat = ft_atoi(argv[3]);
