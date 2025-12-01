@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 02:05:45 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/30 20:42:23 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/02 00:48:17 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ static void	init_philos(t_program *program)
 	while(i < program->number_of_philosophers)
 	{
 		program->philos[i].id = i + 1;
-		program->philos[i].dead = 0;
+		program->philos[i].dead = &program->dead;
 		program->philos[i].times_died = 0;
 		program->philos[i].times_eaten = 0;
 		program->philos[i].times_slept = 0;
 		program->philos[i].program = program;
+		program->philos[i].last_meal = 1;
+		program->philos[i].born_time = ft_get_time();
 		i++;
 	}
 }
@@ -56,6 +58,7 @@ static void	init_program(char **argv, t_program *program)
 		program->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	else
 		program->number_of_times_each_philosopher_must_eat = -1;
+	program->dead = 0;
 
 }
 
