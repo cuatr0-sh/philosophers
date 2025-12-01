@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:09:11 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/30 09:06:26 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/30 19:57:32 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i < program->number_of_philosophers)
 	{
-		pthread_create(&program->philos[i].thread, NULL, philo_routine, &program->philos[i]);
+		pthread_create(&program->philos[i].thread, NULL,
+			philo_routine, &program);
+		i++;
 	}
 	debug_print(program);
 	return (0);

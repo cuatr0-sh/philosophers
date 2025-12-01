@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:10:08 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/30 09:50:48 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/30 20:47:00 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 typedef unsigned long long	t_time;
 
+typedef struct s_program t_program;
+
 typedef struct s_philo
 {
 	int		id;
@@ -36,6 +38,7 @@ typedef struct s_philo
 	pthread_t	thread;
 	pthread_mutex_t	fork;
 	pthread_mutex_t *r_fork;
+	t_program	*program;
 }			t_philo;
 
 typedef struct s_program
@@ -45,6 +48,7 @@ typedef struct s_program
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		number_of_times_each_philosopher_must_eat;
+	int		dead;
 	t_philo		*philos;
 	t_time		program_start;
 }			t_program;
@@ -59,9 +63,9 @@ void	init(char **argv, t_program *program);
 int	ft_atoi(const char *str);
 
 /* routine.c */
-void	philo_think(t_program *program);
-void	philo_eat(t_program *program);
-void	philo_sleep(t_program *program);
+void	philo_think(t_philo *philo);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
 void	*philo_routine(void *arg);
 
 /* time.c */

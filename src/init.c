@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 02:05:45 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/30 09:49:12 by asoria           ###   ########.fr       */
+/*   Updated: 2025/11/30 20:42:23 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	init_philos(t_program *program)
 		program->philos[i].times_died = 0;
 		program->philos[i].times_eaten = 0;
 		program->philos[i].times_slept = 0;
+		program->philos[i].program = program;
 		i++;
 	}
 }
