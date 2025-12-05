@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:09:11 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/02 00:54:52 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/05 00:50:18 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 int	main(int argc, char **argv)
 {
-	int	i;
 	t_program *program;
 
 	program = malloc(sizeof(t_program));
+	if (!program)
+		return (1);
 	if (parse_args(argc, argv) != 0)
 		return (1);
 	init(argv, program);
-	i = 0;
-	while (i < program->number_of_philosophers)
+	if (program->number_of_philosophers == 1)
 	{
-		pthread_create(&program->philos[i].thread, NULL,
-			philo_routine, &program->philos[i]);
-		i++;
+		safe_print(program, program->philos[0].id, "has taken a fork");
+		usleep(program->time_to_die * 1000);
+		safe_print(program, program->philos[0].id, "died");
+		black_hole(program);
+		return (0);
 	}
-	while (i < program->number_of_philosophers)
-	{
-		pthread_join(program->philos[i].thread);
-		i++;
-	}
-	debug_print(program);
+	create_threads(program);
+	join_threads(program);
+	black_hole(program);
 	return (0);
 }

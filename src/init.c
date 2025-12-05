@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 02:05:45 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/02 00:48:17 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/05 00:57:20 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static void	init_philos(t_program *program)
 		program->philos[i].times_eaten = 0;
 		program->philos[i].times_slept = 0;
 		program->philos[i].program = program;
-		program->philos[i].last_meal = 1;
+		program->philos[i].last_meal = ft_get_time();
 		program->philos[i].born_time = ft_get_time();
 		i++;
 	}
 }
 
-static void	init_program(char **argv, t_program *program)
+void	init_program(char **argv, t_program *program)
 {
 	program->program_start = ft_get_time();
 	program->number_of_philosophers = ft_atoi(argv[1]);
@@ -59,7 +59,9 @@ static void	init_program(char **argv, t_program *program)
 	else
 		program->number_of_times_each_philosopher_must_eat = -1;
 	program->dead = 0;
-
+	pthread_mutex_init(&program->write_mutex, NULL);
+	pthread_mutex_init(&program->dead_mutex, NULL);
+	pthread_mutex_init(&program->meal_mutex, NULL);
 }
 
 void	init(char **argv, t_program *program)

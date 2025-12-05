@@ -6,11 +6,51 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:59:25 by asoria            #+#    #+#             */
-/*   Updated: 2025/11/24 18:13:06 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/05 00:41:15 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+int	is_dead(t_program *program)
+{
+	int	dead;
+
+	pthread_mutex_lock(&program->dead_mutex);
+	dead = program->dead;
+	pthread_mutex_unlock(&program->dead_mutex);
+	return (dead);
+}
+
+void	set_dead(t_program *program)
+{
+	pthread_mutex_lock(&program->dead_mutex);
+	program->dead = 1;
+	pthread_mutex_unlock(&program->dead_mutex);
+}
+
+void	safe_print(t_program *program, int philo_id, char *message)
+{
+	pthread_mutex_lock(&program->write_mutex);
+	if (!program->dead)
+		printf("%llu %d %s\n", time_since_ps(program), philo_id, message);
+	pthread_mutex_unlock(&program->write_mutex);
+}
+
+void	black_hole(t_program *program)
+{
+	int	i;
+
+	i = 0;
+	while (i < program->number_of_philosophers)
+	{
+		pthread_mutex_destroy(&program->philos[i].fork);
+		i++;
+	}
+	pthread_mutex_destroy(&program->dead_mutex);
+	pthread_mutex_destroy(&program->write_mutex);
+	free(program->philos);
+}
 
 int	ft_atoi(const char *str)
 {
