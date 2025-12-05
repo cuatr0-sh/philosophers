@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 02:05:45 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/05 00:57:20 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/05 01:24:53 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ static void	init_forks(t_program *program)
 
 	i = 0;
 	while (i < program->number_of_philosophers)
-	{		
+	{
 		pthread_mutex_init(&program->philos[i].fork, NULL);
-			program->philos[i].r_fork = &program->philos[(i + 1) % program->number_of_philosophers].fork;
+		program->philos[i].r_fork = &program->philos[(i + 1)
+			% program->number_of_philosophers].fork;
 		i++;
 	}
 }
@@ -33,7 +34,7 @@ static void	init_philos(t_program *program)
 	if (!program->philos)
 		return ;
 	i = 0;
-	while(i < program->number_of_philosophers)
+	while (i < program->number_of_philosophers)
 	{
 		program->philos[i].id = i + 1;
 		program->philos[i].dead = &program->dead;

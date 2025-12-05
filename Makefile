@@ -6,7 +6,7 @@
 #    By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 17:12:22 by asoria            #+#    #+#              #
-#    Updated: 2025/12/02 19:41:57 by asoria           ###   ########.fr        #
+#    Updated: 2025/12/05 01:22:33 by asoria           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@ CC		:= cc
 CFLAGS		:= -Wall -Wextra -Werror -g -pthread -Iincludes -O2 -march=native
 
 SRC_DIR		:= src
-SRC_FILES	:= debug.c \
-		   init.c \
+SRC_FILES	:= init.c \
 		   monitor.c \
 		   philo.c \
 		   parse_args.c \

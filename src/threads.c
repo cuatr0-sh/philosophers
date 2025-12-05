@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 18:39:22 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/05 00:38:41 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/05 01:33:38 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	create_threads(t_program *program)
 	while (i < program->number_of_philosophers)
 	{
 		pthread_create(&program->philos[i].thread, NULL,
-				philo_routine, &program->philos[i]);
+			philo_routine, &program->philos[i]);
 		i++;
 	}
 }

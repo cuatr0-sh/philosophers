@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:09:11 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/05 00:50:18 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/05 01:27:46 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_program *program;
+	t_program	*program;
 
 	program = malloc(sizeof(t_program));
 	if (!program)

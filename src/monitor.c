@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 19:07:13 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/05 01:01:59 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/05 21:21:50 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 static int	everyone_ate(t_program *program)
 {
-	int	i;
+	int		i;
 	size_t	meals_eaten;
 
 	i = 0;
-
 	if (program->number_of_times_each_philosopher_must_eat == -1)
 		return (0);
 	while (i < program->number_of_philosophers)
@@ -26,8 +25,8 @@ static int	everyone_ate(t_program *program)
 		pthread_mutex_lock(&program->meal_mutex);
 		meals_eaten = program->philos[i].times_eaten;
 		pthread_mutex_unlock(&program->meal_mutex);
-		if (meals_eaten <
-				(size_t)program->number_of_times_each_philosopher_must_eat)
+		if (meals_eaten
+			< (size_t)program->number_of_times_each_philosopher_must_eat)
 			return (0);
 		i++;
 	}
@@ -37,13 +36,17 @@ static int	everyone_ate(t_program *program)
 
 static int	someone_died(t_program *program)
 {
-	int	i;
+	int			i;
 	long long	diff;
+	long long	last_meal;
 
 	i = 0;
 	while (i < program->number_of_philosophers)
 	{
-		diff = ft_get_time() - program->philos[i].last_meal;
+		pthread_mutex_lock(&program->meal_mutex);
+		last_meal = program->philos[i].last_meal;
+		pthread_mutex_unlock(&program->meal_mutex);
+		diff = ft_get_time() - last_meal;
 		if (diff > program->time_to_die)
 		{
 			safe_print(program, program->philos[i].id, "died");
@@ -60,12 +63,12 @@ void	*monitor_routine(void *arg)
 	t_program	*program;
 
 	program = (t_program *)arg;
-	usleep(1000);
+	usleep(100);
 	while (!is_dead(program))
 	{
 		if (someone_died(program) || everyone_ate(program))
-			break;
-		usleep(1000);
+			break ;
+		usleep(100);
 	}
-	return NULL;
+	return (NULL);
 }
