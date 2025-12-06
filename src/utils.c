@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:59:25 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/05 21:00:34 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/06 13:53:26 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	black_hole(t_program *program)
 	pthread_mutex_destroy(&program->write_mutex);
 	pthread_mutex_destroy(&program->meal_mutex);
 	free(program->philos);
+	free(program);
 }
 
 int	ft_atoi(const char *str)
