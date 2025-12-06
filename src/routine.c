@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 04:47:24 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/05 21:23:52 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/05 23:28:42 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,13 @@ void	*philo_routine(void *arg)
 		usleep(1000);
 	while (!is_dead(program))
 	{
+		if (is_dead(program))
+			break ;
 		philo_think(philo);
+		if (is_dead(program))
+			break ;
 		philo_eat(philo);
-		if (has_eaten_enough(philo))
+		if (has_eaten_enough(philo) || is_dead(program))
 			break ;
 		philo_sleep(philo);
 	}

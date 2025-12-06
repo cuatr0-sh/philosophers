@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 19:07:13 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/05 21:21:50 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/06 00:03:34 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ static int	someone_died(t_program *program)
 {
 	int			i;
 	long long	diff;
-	long long	last_meal;
 
 	i = 0;
 	while (i < program->number_of_philosophers)
 	{
 		pthread_mutex_lock(&program->meal_mutex);
-		last_meal = program->philos[i].last_meal;
+		diff = ft_get_time() - program->philos[i].last_meal;
 		pthread_mutex_unlock(&program->meal_mutex);
-		diff = ft_get_time() - last_meal;
 		if (diff > program->time_to_die)
 		{
 			safe_print(program, program->philos[i].id, "died");
@@ -63,7 +61,7 @@ void	*monitor_routine(void *arg)
 	t_program	*program;
 
 	program = (t_program *)arg;
-	usleep(100);
+	usleep(1000);
 	while (!is_dead(program))
 	{
 		if (someone_died(program) || everyone_ate(program))
