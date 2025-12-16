@@ -6,7 +6,7 @@
 /*   By: asoria <asoria@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:09:11 by asoria            #+#    #+#             */
-/*   Updated: 2025/12/16 19:31:03 by asoria           ###   ########.fr       */
+/*   Updated: 2025/12/16 19:34:55 by asoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	if (!program)
 		return (1);
 	if (parse_args(argc, argv) != 0)
-		return (black_hole(program), 1);
+		return (free(program), 1);
 	init(argv, program);
 	if (program->number_of_philosophers == 1)
 	{
